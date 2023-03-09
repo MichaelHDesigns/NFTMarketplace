@@ -18,7 +18,7 @@ module.exports = {
   networks: {
     hardhat: { chainId: 2330 },
     goerli: {
-      url: `https://rpc0.altcoinchain.org`,
+      url: "https://rpc0.altcoinchain.org",
       accounts: [privateKey],
     },
   },
