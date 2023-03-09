@@ -18,7 +18,7 @@ module.exports = {
   networks: {
     hardhat: { chainId: 2330 },
     mumbai: {
-      url: `https://altcoinchain.infura.io/v3/${process.env.REACT_APP_PROJECTID}`,
+      url: `https://rpc0.altcoinchain.org/rpc${process.env.REACT_APP_PROJECTID}`,
       accounts: [privateKey],
     },
  //   mainnet: {
