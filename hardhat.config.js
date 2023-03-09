@@ -16,7 +16,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 module.exports = {
   networks: {
-    hardhat: { chainId: 1337 },
+    hardhat: { chainId: 2330 },
     goerli: {
       url: `https://rpc0.altcoinchain.org{process.env.REACT_APP_PROJECTID}`,
       accounts: [privateKey],
