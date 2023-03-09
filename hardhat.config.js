@@ -18,11 +18,7 @@ module.exports = {
   networks: {
     hardhat: { chainId: 2330 },
     goerli: {
-      url: `https://rpc0.altcoinchain.org{process.env.REACT_APP_PROJECTID}`,
-      accounts: [privateKey],
-    },
-    mainnet: {
-      url: `https://polygon-mainnet.infura.io/v3/${process.env.REACT_APP_PROJECTID}`,
+      url: `https://rpc0.altcoinchain.org`,
       accounts: [privateKey],
     },
   },
