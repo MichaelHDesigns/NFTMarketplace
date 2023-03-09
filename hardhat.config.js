@@ -1,30 +1,63 @@
+require ("@nomiclabs/hardhat-ethers")
 require("@nomiclabs/hardhat-waffle");
-require('dotenv').config()
-
-//#remember secret key
-const fs = require("fs");
-const privateKey = fs.readFileSync(".secret").toString();
-// This is a sample Hardhat task. To learn how to create your own go to
-// https://hardhat.org/guides/create-task.html
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
-
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
+require("dotenv").config();
 
 module.exports = {
+  defaultNetwork: "hardhat",
   networks: {
-    hardhat: { chainId: 2330 },
-    mumbai: {
-      url: `https://rpc0.altcoinchain.org/rpc${process.env.REACT_APP_PROJECTID}`,
-      accounts: [privateKey],
+    localhost: {
+      chainId: 2330,
+      blockConfirmations: 1,
+      allowUnlimitedContractSize: true,
     },
- //   mainnet: {
- //     url: `https://polygon-mainnet.infura.io/v3/${process.env.REACT_APP_PROJECTID}`,
- //     accounts: [privateKey],
- //   },
+    hardhat: {
+      chainId: 2330,
+      blockConfirmations: 1,
+      allowUnlimitedContractSize: true,
+    },
+
+
+    goerli: {
+      chainId: 2330,
+      blockConfirmations: 1,
+      url: 'process.env.GOERLI_RPC_URL',
+      accounts: [process.env.PRIVATE_KEY],
+      allowUnlimitedContractSize: true,
+    },
+
   },
-  solidity: "0.8.4",
-};
+  solidity: {
+    compilers: [{ version: "0.8.4", settings: {
+      optimizer: {
+        runs: 200,
+        enabled: true
+      }
+    } }, { version: "0.8.17"}],
+  },
+
+  mocha: {
+    timeout: 300000, // 300 seconds max
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY,
+  },
+
+  gasReporter: {
+    // enabled: process.env.REPORT_GAS !== undefined,
+    enabled: false,
+    currency: "INR",
+    outputFile: "gas-report.txt",
+    noColors: true,
+    coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+    token: "ETH",
+  },
+
+  namedAccounts: {
+    deployer: {
+      default: 0,
+    },
+    player: {
+      default: 1,
+    },
+  },
+}
