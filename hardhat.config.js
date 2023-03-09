@@ -20,7 +20,7 @@ module.exports = {
     goerli: {
       chainId: 2330,
       blockConfirmations: 1,
-      url: 'process.env.GOERLI_RPC_URL',
+      url: 'https://rpc0.altoinchain.org/rpc',
       accounts: [process.env.PRIVATE_KEY],
       allowUnlimitedContractSize: true,
     },
